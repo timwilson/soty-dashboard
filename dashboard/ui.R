@@ -12,12 +12,8 @@ shinyUI(fluidPage(
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
-            width = 3,
-            selectInput("round_name",
-                        "Choose a round",
-                        choices = c("NFAA", "USA Archery"),
-                        selected = ""
-                        ),
+            width = 4,
+            uiOutput("round_name"),
             
             hr(),
             p("The Performance Method is a project of the Minnesota Archers Alliance. Learn more about the
@@ -30,9 +26,11 @@ shinyUI(fluidPage(
         mainPanel(
             fluidRow(
                 column(width = 9,
-                       "Column A"),
+                       uiOutput("point_calculator"),
+                       uiOutput("point_plot")
+                       ),
                 column(width = 3,
-                       "Column B")
+                       "Table of score and points")
             )
         )
     )
