@@ -17,7 +17,7 @@ shinyServer(function(input, output) {
     max_pts <- round_data()$max_score
     point_tbl <- tibble(Score = seq(min_pts, max_pts))
     point_tbl %>% 
-      mutate(Points = round(100 * exp(round_data()$a * (Score - round_data()$high_score)))
+      mutate(Points = 100 * exp(round_data()$a * (Score - round_data()$high_score))
       )
   })
   
@@ -41,6 +41,9 @@ shinyServer(function(input, output) {
   })
   
   output$point_plot <- renderPlot({
+    if (is.null(point_table_data()) || input$round_name == "") {
+      return()
+    }
     ggplot(data = point_table_data(), aes(x = Score, y = Points)) +
       geom_smooth(se = FALSE) +
       labs(
@@ -51,7 +54,8 @@ shinyServer(function(input, output) {
   output$point_table <- renderTable({
     point_table_data()
   },
-    striped = TRUE
+    striped = TRUE,
+    digits = 0
   )
   
 })
