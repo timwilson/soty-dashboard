@@ -26,12 +26,13 @@ shinyUI(fluidPage(
         # Show the points, curve, and calculator for the round
         mainPanel(
             fluidRow(
-                column(width = 4,
+                column(width = 8,
                        uiOutput("point_calculator"),
                        plotOutput("point_plot")
                        ),
-                column(width = 4,
-                       DT::dataTableOutput("point_table")
+                column(width = 3,
+                       p("Performance Points"),
+                       tableOutput("point_table")
                 )
             )
         )

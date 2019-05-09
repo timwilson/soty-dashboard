@@ -1,5 +1,4 @@
 library(shiny)
-library(DT)
 
 # Define server logic required to create the plots and other outputs
 
@@ -40,20 +39,10 @@ shinyServer(function(input, output) {
     )
   })
   
-  output$point_table <- DT::renderDataTable({
-    datatable(point_table_data(),
-              #columnDefs = list(list(orderable = FALSE, targets = c(1, 2))),
-              options = list(
-                columns = list(
-                  list(orderable = FALSE, targets = c(1,2))#,
-                  #list(visible = TRUE, targets = c(1,2))
-                  ),
-                paging = TRUE,
-                pagingType = "simple",
-                pageLength = 50,
-                searching = FALSE
-              )
-    )
-  })
+  output$point_table <- renderTable({
+    point_table_data()
+  },
+    striped = TRUE
+  )
   
 })
