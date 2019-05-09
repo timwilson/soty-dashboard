@@ -12,6 +12,6 @@ rounds <- tribble(
   # "a" value from model, max possible score for round, curve type (e.g., "exp" or "linear")
   ~name, ~discipline, ~high_score, ~min_score, ~a, ~max_score, ~curve,
   "USA Archery Outdoor 1440", "Compound", 1398, 1100, 0.009935, 1440, "exp", # Numbers not real
-  "NFAA Indoor 360", "Compound", 360, 320, 0.00023, 360, "exp" # Numbers not real
+  "NFAA Indoor 360", "Compound", 360, 328, 0.00023, 360, "exp" # Numbers not real
 )
 

@@ -23,15 +23,16 @@ shinyUI(fluidPage(
             img(src = "MAA_logo.png", width = "100%")
         ),
 
-        # Show a plot of the generated distribution
+        # Show the points, curve, and calculator for the round
         mainPanel(
             fluidRow(
-                column(width = 9,
+                column(width = 4,
                        uiOutput("point_calculator"),
-                       uiOutput("point_plot")
+                       plotOutput("point_plot")
                        ),
-                column(width = 3,
-                       "Table of score and points")
+                column(width = 4,
+                       DT::dataTableOutput("point_table")
+                )
             )
         )
     )
