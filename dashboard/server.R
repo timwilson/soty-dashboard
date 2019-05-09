@@ -1,4 +1,5 @@
 library(shiny)
+library(ggplot2)
 
 # Define server logic required to create the plots and other outputs
 
@@ -37,6 +38,14 @@ shinyServer(function(input, output) {
                  selected = "Compound",
                  choices = c("Compound", "Recurve")
     )
+  })
+  
+  output$point_plot <- renderPlot({
+    ggplot(data = point_table_data(), aes(x = Score, y = Points)) +
+      geom_smooth(se = FALSE) +
+      labs(
+        title = "Performance Points Curve"
+      )
   })
   
   output$point_table <- renderTable({
