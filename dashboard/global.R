@@ -5,6 +5,8 @@
 # where a comes from the model and b is the highest score in the dataset (i.e. "high_score" in tibble
 # below).
 
+library(tidyverse)
+
 rounds <- tribble(
   # round name, equipment class, high score in data set, minimum score to earn points,
   # "a" value from model, max possible score for round

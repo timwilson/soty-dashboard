@@ -14,6 +14,7 @@ shinyUI(fluidPage(
         sidebarPanel(
             width = 4,
             uiOutput("round_name"),
+            uiOutput("equipment_class"),
             
             hr(),
             p("The Performance Method is a project of the Minnesota Archers Alliance. Learn more about the
