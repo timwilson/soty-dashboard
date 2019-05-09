@@ -6,9 +6,10 @@
 # below).
 
 rounds <- tribble(
-  # round name, equipment class, high score in data set, "a" value from model, max possible score for round
-  ~name, ~discipline, ~high_score, ~a, ~max_score,
-  "USA Archery Outdoor 1440", "Compound", 1398, 0.009935, 1440,
-  "NFAA Indoor 360", "Compound", 360, 0.00023, 360
+  # round name, equipment class, high score in data set, minimum score to earn points,
+  # "a" value from model, max possible score for round
+  ~name, ~discipline, ~high_score, ~min_score, ~a, ~max_score,
+  "USA Archery Outdoor 1440", "Compound", 1398, 1100, 0.009935, 1440, # Numbers not real
+  "NFAA Indoor 360", "Compound", 360, 320, 0.00023, 360 # Numbers not real
 )
 
