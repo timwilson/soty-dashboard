@@ -5,6 +5,17 @@ library(ggrepel)
 # Define server logic required to create the plots and other outputs
 
 shinyServer(function(input, output) {
+
+  # "Pretty print" the data frame in a multi-column table
+  # Credit to Onyambu via Stack Overflow
+  # https://stackoverflow.com/users/8380272/onyambu
+  reshape_table <- function(dat, cols = 4) {
+    n = nrow(dat)
+    m = ceiling(n/cols)
+    time=rep(1:cols, each = m, len = n)
+    id = rep(1:m, times = cols, len = n)
+    reshape(cbind(id, time, dat), idvar = 'id', dir='wide')[-1]
+  }
   
   round_data <- reactive({
     req(input$round_name, input$equipment_class)
@@ -89,7 +100,7 @@ shinyServer(function(input, output) {
   
   output$point_table <- renderTable({
     req(point_table_data())
-    point_table_data()
+    reshape_table(point_table_data())
   },
     striped = TRUE,
     digits = 0

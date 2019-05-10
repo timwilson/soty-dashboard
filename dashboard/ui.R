@@ -27,15 +27,10 @@ shinyUI(fluidPage(
         # Show the points, curve, and calculator for the round
         mainPanel(
             fluidRow(
-                column(width = 8,
-                       #uiOutput("score_slider"),
-                       #uiOutput("score_input"),
-                       plotOutput("point_plot")
-                       ),
-                column(width = 3,
-                       p("Performance Points"),
-                       tableOutput("point_table")
-                )
+                plotOutput("point_plot")
+                ),
+            fluidRow(
+                tableOutput("point_table")
             )
         )
     )
