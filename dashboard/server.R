@@ -46,31 +46,34 @@ shinyServer(function(input, output) {
     )
   })
 
-  output$score_input <- renderUI({
-    numericInput("score_input",
-                 "Score",
-                 min = round_data()$min_score,
-                 max = round_data()$max_score,
-                 value = quantile(seq(round_data()$min_score, round_data()$max_score), 0.75),
-                 step = 1
-                 )
-  })
-  
-  # output$score_slider <- renderUI({
-  #   sliderInput("score_slider",
-  #               "Score",
-  #               min = round_data()$min_score,
-  #               max = round_data()$max_score,
-  #               value = quantile(seq(round_data()$min_score, round_data()$max_score), 0.75)
-  #               )
+  # output$score_input <- renderUI({
+  #   numericInput("score_input",
+  #                "Score",
+  #                min = round_data()$min_score,
+  #                max = round_data()$max_score,
+  #                value = quantile(seq(round_data()$min_score, round_data()$max_score), 0.75),
+  #                step = 1
+  #                )
   # })
   
-  
+  output$score_input <- renderUI({
+    sliderInput("score_input",
+                "Score",
+                min = round_data()$min_score,
+                max = round_data()$max_score,
+                value = quantile(seq(round_data()$min_score, round_data()$max_score), 0.75)
+                )
+  })
   
   output$point_plot <- renderPlot({
-    req(point_table_data())
+    req(point_table_data(), input$score_input)
+    pt_x <- input$score_input
+    pt_y <- point_table_data() %>%
+      filter(Score == input$score_input) %>%
+      select(Points)
     ggplot(data = point_table_data(), aes(x = Score, y = Points)) +
-      geom_smooth(se = FALSE) +
+      geom_line(color = "blue") +
+      geom_point(aes(x = pt_x, y = pt_y[[1]]), color = "red", size = 3) +
       labs(
         title = "Performance Points Curve"
       )
