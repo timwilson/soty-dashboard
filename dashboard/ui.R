@@ -15,6 +15,7 @@ shinyUI(fluidPage(
             width = 4,
             uiOutput("round_name"),
             uiOutput("equipment_class"),
+            uiOutput("score_input"),
             
             hr(),
             p("The Performance Method is a project of the Minnesota Archers Alliance. Learn more about the
@@ -27,7 +28,8 @@ shinyUI(fluidPage(
         mainPanel(
             fluidRow(
                 column(width = 8,
-                       uiOutput("point_calculator"),
+                       #uiOutput("score_slider"),
+                       #uiOutput("score_input"),
                        plotOutput("point_plot")
                        ),
                 column(width = 3,

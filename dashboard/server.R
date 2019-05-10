@@ -45,6 +45,27 @@ shinyServer(function(input, output) {
                  choices = c("Compound", "Recurve")
     )
   })
+
+  output$score_input <- renderUI({
+    numericInput("score_input",
+                 "Score",
+                 min = round_data()$min_score,
+                 max = round_data()$max_score,
+                 value = quantile(seq(round_data()$min_score, round_data()$max_score), 0.75),
+                 step = 1
+                 )
+  })
+  
+  # output$score_slider <- renderUI({
+  #   sliderInput("score_slider",
+  #               "Score",
+  #               min = round_data()$min_score,
+  #               max = round_data()$max_score,
+  #               value = quantile(seq(round_data()$min_score, round_data()$max_score), 0.75)
+  #               )
+  # })
+  
+  
   
   output$point_plot <- renderPlot({
     req(point_table_data())
