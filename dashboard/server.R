@@ -1,5 +1,6 @@
 library(shiny)
 library(ggplot2)
+library(ggrepel)
 
 # Define server logic required to create the plots and other outputs
 
@@ -71,9 +72,16 @@ shinyServer(function(input, output) {
     pt_y <- point_table_data() %>%
       filter(Score == input$score_input) %>%
       select(Points)
-    ggplot(data = point_table_data(), aes(x = Score, y = Points)) +
-      geom_line(color = "blue") +
-      geom_point(aes(x = pt_x, y = pt_y[[1]]), color = "red", size = 3) +
+    ggplot() +
+      geom_line(data = point_table_data(), aes(x = Score, y = Points), color = "blue") +
+      geom_point(aes(x = pt_x, y = pt_y[[1]]),
+                 color = "red", size = 3) +
+      geom_label_repel(aes(x = pt_x, y = pt_y[[1]]),
+                       label = str_c("Score = ", pt_x, "\nPoints = ", round(pt_y, 1), sep = ""),
+                       nudge_x = -55,
+                       nudge_y = 20,
+                       xlim = c(round_data()$min_score + 10, round_data()$max_score - 10)
+                       ) +
       labs(
         title = "Performance Points Curve"
       )
