@@ -1,6 +1,7 @@
 library(shiny)
 library(ggplot2)
 library(ggrepel)
+library(kableExtra)
 
 # Define server logic required to create the plots and other outputs
 
@@ -98,12 +99,17 @@ shinyServer(function(input, output) {
       )
   })
   
-  output$point_table <- renderTable({
+  output$point_table <- function() {
     req(point_table_data())
-    reshape_table(point_table_data())
-  },
-    striped = TRUE,
-    digits = 0
-  )
-  
+    multicol_table <- reshape_table(point_table_data())
+    options(knitr.kable.NA = '')
+    kable(multicol_table,
+          col.names = c("Score", "Points", "Score", "Points", "Score", "Points", "Score", "Points"),
+          align = c("c", "c", "c", "c", "c", "c", "c", "c"),
+          digits = c(0, 1, 0, 1, 0, 1, 0, 1),
+          caption = "Table of Scores and Performance Points"
+    ) %>% 
+      #column_spec(column = c(2, 4, 6), width = "2cm") %>% 
+      kable_styling(c("striped"), full_width = F, position = "left")
+  }
 })
