@@ -109,7 +109,9 @@ shinyServer(function(input, output) {
           digits = c(0, 1, 0, 1, 0, 1, 0, 1),
           caption = "Table of Scores and Performance Points"
     ) %>% 
-      #column_spec(column = c(2, 4, 6), width = "2cm") %>% 
-      kable_styling(c("striped"), full_width = F, position = "left")
+      column_spec(column = 2, border_right = T) %>% 
+      column_spec(column = 4, border_right = T) %>% 
+      column_spec(column = 6, border_right = T) %>% 
+      kable_styling(bootstrap_options = c("striped", "responsive"), full_width = F, position = "left")
   }
 })
