@@ -6,9 +6,7 @@ library(ggplot2)
 shinyServer(function(input, output) {
   
   round_data <- reactive({
-    if (is.null(input$round_name)) {
-      return(NULL)
-    }
+    req(input$round_name, input$equipment_class)
     rounds %>% 
       filter(name == input$round_name,
              discipline == input$equipment_class
@@ -16,10 +14,7 @@ shinyServer(function(input, output) {
   })
   
   point_table_data <- reactive({
-    if (is.null(round_data())) {
-      return(NULL)
-    }
-    print("In the loop")
+    req(round_data())
     min_pts <- round_data()$min_score
     max_pts <- round_data()$max_score
     point_tbl <- tibble(Score = seq(min_pts, max_pts))
@@ -52,9 +47,7 @@ shinyServer(function(input, output) {
   })
   
   output$point_plot <- renderPlot({
-    if (is.null(point_table_data()) || input$round_name == "") {
-      return()
-    }
+    req(point_table_data())
     ggplot(data = point_table_data(), aes(x = Score, y = Points)) +
       geom_smooth(se = FALSE) +
       labs(
@@ -63,9 +56,7 @@ shinyServer(function(input, output) {
   })
   
   output$point_table <- renderTable({
-    if(is.null(point_table_data())) {
-      return()
-    }
+    req(point_table_data())
     point_table_data()
   },
     striped = TRUE,
