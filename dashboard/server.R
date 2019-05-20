@@ -72,9 +72,9 @@ shinyServer(function(input, output) {
   output$score_input <- renderUI({
     sliderInput("score_input",
                 "Score",
-                min = round_data()$min_score,
+                min = round_data()$low_score,
                 max = round_data()$max_score,
-                value = quantile(seq(round_data()$min_score, round_data()$max_score), 0.75)
+                value = quantile(seq(round_data()$low_score, round_data()$max_score), 0.75)
                 )
   })
   
