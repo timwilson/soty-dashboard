@@ -31,14 +31,13 @@ shinyServer(function(input, output) {
     min_pts <- round_data()$low_score
     max_pts <- round_data()$max_score
     point_tbl <- tibble(Score = seq(min_pts, max_pts))
-    point_tbl %>% 
-      #mutate(Points = round_data()$slope * Score + round_data()$intercept) %>% 
-      mutate(Points = ifelse(round_data()$model == "exp",
-                             100 * exp(round_data()$a * (Score - round_data()$high_score)),
-                             round_data()$slope * Score + round_data()$intercept
-                            )
-      ) %>%
-      filter(Points > 0)
+    if (round_data()$model == "exp") {
+      point_tbl %>% mutate(Points = 100 * exp(round_data()$a * (Score - round_data()$high_score)))
+    } else {
+      point_tbl %>%
+        mutate(Points = round_data()$slope * Score + round_data()$intercept) %>% 
+        filter(Points > 0)
+    }
   })
   
   output$round_name <- renderUI({
@@ -64,16 +63,6 @@ shinyServer(function(input, output) {
     )
   })
 
-  # output$score_input <- renderUI({
-  #   numericInput("score_input",
-  #                "Score",
-  #                min = round_data()$min_score,
-  #                max = round_data()$max_score,
-  #                value = quantile(seq(round_data()$min_score, round_data()$max_score), 0.75),
-  #                step = 1
-  #                )
-  # })
-  
   output$score_input <- renderUI({
     sliderInput("score_input",
                 "Score",
