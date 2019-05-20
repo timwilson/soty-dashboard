@@ -28,12 +28,17 @@ shinyServer(function(input, output) {
   
   point_table_data <- reactive({
     req(round_data())
-    min_pts <- round_data()$min_score
+    min_pts <- round_data()$low_score
     max_pts <- round_data()$max_score
     point_tbl <- tibble(Score = seq(min_pts, max_pts))
     point_tbl %>% 
-      mutate(Points = 100 * exp(round_data()$a * (Score - round_data()$high_score))
-      )
+      #mutate(Points = round_data()$slope * Score + round_data()$intercept) %>% 
+      mutate(Points = ifelse(round_data()$model == "exp",
+                             100 * exp(round_data()$a * (Score - round_data()$high_score)),
+                             round_data()$slope * Score + round_data()$intercept
+                            )
+      ) %>%
+      filter(Points > 0)
   })
   
   output$round_name <- renderUI({
