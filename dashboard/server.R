@@ -92,7 +92,7 @@ shinyServer(function(input, output) {
                        label = str_c("Score = ", pt_x, "\nPoints = ", round(pt_y, 1), sep = ""),
                        nudge_x = -55,
                        nudge_y = 20,
-                       xlim = c(round_data()$min_score + 10, round_data()$max_score - 10)
+                       xlim = c(round_data()$low_score + 10, round_data()$max_score - 10)
                        ) +
       labs(
         title = "Performance Points Curve"
@@ -101,17 +101,18 @@ shinyServer(function(input, output) {
   
   output$point_table <- function() {
     req(point_table_data())
-    multicol_table <- reshape_table(point_table_data())
+    multicol_table <- reshape_table(point_table_data(), 5)
     options(knitr.kable.NA = '')
     kable(multicol_table,
-          col.names = c("Score", "Points", "Score", "Points", "Score", "Points", "Score", "Points"),
-          align = c("c", "c", "c", "c", "c", "c", "c", "c"),
-          digits = c(0, 1, 0, 1, 0, 1, 0, 1),
+          col.names = c("Score", "Points", "Score", "Points", "Score", "Points", "Score", "Points", "Score", "Points"),
+          align = c("c", "c", "c", "c", "c", "c", "c", "c", "c", "c"),
+          digits = c(0, 1, 0, 1, 0, 1, 0, 1, 0, 1),
           caption = "Table of Scores and Performance Points"
     ) %>% 
       column_spec(column = 2, border_right = T) %>% 
       column_spec(column = 4, border_right = T) %>% 
       column_spec(column = 6, border_right = T) %>% 
+      column_spec(column = 8, border_right = T) %>%
       kable_styling(bootstrap_options = c("striped", "responsive"), full_width = F, position = "left")
   }
 })
