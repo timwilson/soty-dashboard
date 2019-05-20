@@ -34,9 +34,7 @@ shinyServer(function(input, output) {
     if (round_data()$model == "exp") {
       point_tbl %>% mutate(Points = 100 * exp(round_data()$a * (Score - round_data()$high_score)))
     } else {
-      point_tbl %>%
-        mutate(Points = round_data()$slope * Score + round_data()$intercept) %>% 
-        filter(Points > 0)
+      point_tbl %>% mutate(Points = round_data()$slope * Score + round_data()$intercept)
     }
   })
   
