@@ -78,14 +78,14 @@ shinyServer(function(input, output) {
       select(Points)
     ggplot() +
       geom_line(data = point_table_data(), aes(x = Score, y = Points), color = "blue") +
-      geom_point(aes(x = pt_x, y = pt_y[[1]]),
-                 color = "red", size = 3) +
       geom_label_repel(aes(x = pt_x, y = pt_y[[1]]),
                        label = str_c("Score = ", pt_x, "\nPoints = ", round(pt_y, 1), sep = ""),
-                       nudge_x = -55,
-                       nudge_y = 20,
+                       nudge_x = -25,
+                       nudge_y = 10,
                        xlim = c(round_data()$low_score + 10, round_data()$max_score - 10)
                        ) +
+      geom_point(aes(x = pt_x, y = pt_y[[1]]),
+                 color = "red", size = 3) +
       labs(
         title = "Performance Points Curve"
       )
