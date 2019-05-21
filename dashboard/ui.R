@@ -5,10 +5,10 @@ library(tidyverse)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
-
+    
     # Application title
     titlePanel("Performance Method Calculations"),
-
+    
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
@@ -23,22 +23,24 @@ shinyUI(fluidPage(
               a(href="www.facebook/com/MNArchersAlliance", "Facebook"), "."),
             img(src = "MAA_logo.png", width = "100%")
         ),
-
+        
         # Show the points, curve, and calculator for the round
         mainPanel(
             fluidRow(
-                column(width = 8,
-                    plotOutput("point_plot")
-                    ),
-                column(width = 2,
-                    uiOutput("equation")
-                    )
-                ),
+                column(width = 10,
+                       plotOutput("point_plot")
+                )
+            ),
+            fluidRow(
+                column(width = 10,
+                       htmlOutput("equation")
+                       )
+            ),
             fluidRow(
                 column(width = 8,
-                    tableOutput("point_table")
+                       tableOutput("point_table")
                 )
             )
-        )
-    )
+        ) #mainPanel
+    ) #sidebarLayout
 ))
