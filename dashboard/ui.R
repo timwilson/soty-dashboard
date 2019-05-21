@@ -27,8 +27,11 @@ shinyUI(fluidPage(
         # Show the points, curve, and calculator for the round
         mainPanel(
             fluidRow(
-                column(width = 10,
+                column(width = 8,
                     plotOutput("point_plot")
+                    ),
+                column(width = 2,
+                    uiOutput("equation")
                     )
                 ),
             fluidRow(
