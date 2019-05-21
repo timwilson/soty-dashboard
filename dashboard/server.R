@@ -53,12 +53,6 @@ shinyServer(function(input, output) {
     )
   })
   
-  output$equation <- renderUI({
-    withMathJax(
-      helpText('Performance Point Equation')
-      )
-  })
-  
   output$equipment_class <- renderUI({
     radioButtons("equipment_class",
                  "Equipment Class",
