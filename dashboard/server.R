@@ -87,7 +87,10 @@ shinyServer(function(input, output) {
       geom_point(aes(x = pt_x, y = pt_y[[1]]),
                  color = "red", size = 3) +
       labs(
-        title = "Performance Points Curve"
+        title = str_c("Performance Points Curve for the", input$round_name, "round", sep = " "),
+        subtitle = input$equipment_class,
+        x = "Score",
+        y = "Performance Points"
       )
   })
   
