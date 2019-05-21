@@ -23,7 +23,7 @@ shinyUI(fluidPage(
               a(href="www.facebook/com/MNArchersAlliance", "Facebook"), "page."),
             p("For more information about the Performance Method, read", 
                 em(a(href="http://archerytoolkit.net/soty/article.html", "The Performance Method: An Improved
-            Archer Ranking System for Determining a \"Shooter of the Year\"")), "by Tim Wilson. Please email or call with questions at", 
+            Archer Ranking System for Determining a \"Shooter of the Year\"")), "by Tim Wilson. Please email or call with questions to", 
                 a(mailto="tim@themnaa.org", "tim@themnaa.org"),
                 " or (612) 599-5470."),
             img(src = "MAA_logo.png", width = "100%")
