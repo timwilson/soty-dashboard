@@ -53,6 +53,12 @@ shinyServer(function(input, output) {
     )
   })
   
+  output$equation <- renderUI({
+    withMathJax(
+      helpText('Performance Point Equation')
+      )
+  })
+  
   output$equipment_class <- renderUI({
     radioButtons("equipment_class",
                  "Equipment Class",
@@ -87,8 +93,8 @@ shinyServer(function(input, output) {
       geom_point(aes(x = pt_x, y = pt_y[[1]]),
                  color = "red", size = 3) +
       labs(
-        title = str_c("Performance Points Curve for the", input$round_name, "round", sep = " "),
-        subtitle = input$equipment_class,
+        title = "Performance Points Curve",
+        subtitle = str_c(input$round_name, " Round (", input$equipment_class, ")", sep = ""),
         x = "Score",
         y = "Performance Points"
       )
