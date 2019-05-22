@@ -1,2 +1,3 @@
-# soty-dashboard
-Performance Method points dashboard
+# "Shooter of the Year" Dashboard
+
+This project is an R Shiny dashboard illustrating the [Performance Method](http://archerytoolkit/soty/article.html) calculations for a variety of USA Archery and NFAA archery rounds. These calculations provide a means for an archery club or organization to rank their participants and calculate a "shooter of the year." The Performance Method works across disciplines and represents an improvement over some of the more commonly used approaches.
