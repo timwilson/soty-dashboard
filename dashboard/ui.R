@@ -26,7 +26,7 @@ shinyUI(fluidPage(
             Archer Ranking System for Determining a \"Shooter of the Year\"")), "by Tim Wilson. Please email or call with questions to", 
                 a(mailto="tim@themnaa.org", "tim@themnaa.org"),
                 " or (612) 599-5470."),
-            img(src = "MAA_logo.png", width = "100%")
+            img(src = "MAA_logo.png", width = "100%", style = "margin-top: 1em")
         ),
         
         # Show the points, curve, and calculator for the round
