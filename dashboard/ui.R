@@ -6,6 +6,12 @@ library(tidyverse)
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
     
+    # Link to CSS file
+    tags$head(
+        tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
+        tags$script(src = "copyToClipboard.js")
+    ),
+    
     # Application title
     titlePanel("Performance Method Calculations"),
     
