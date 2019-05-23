@@ -21,8 +21,8 @@ shinyUI(fluidPage(
             p("The Performance Method is a project of the Minnesota Archers Alliance. Learn more about the
               MAA and our programs at our", a(href="https://themnaa.org/", "web site"), "or", 
               a(href="www.facebook/com/MNArchersAlliance", "Facebook"), "page."),
-            p("For more information about the Performance Method, read", 
-                em(a(href="http://archerytoolkit.net/soty/article.html", "The Performance Method: An Improved
+            p("For more information about the Performance Method, visit the", a(href="https://archerytoolkit.net/performancemethod/", "web site"), "or read", 
+                em(a(href="http://archerytoolkit.net/performancemethod/article.html", "The Performance Method: An Improved
             Archer Ranking System for Determining a \"Shooter of the Year\"")), "by Tim Wilson. Please email or call with questions to", 
                 a(mailto="tim@themnaa.org", "tim@themnaa.org"),
                 " or (612) 599-5470."),
