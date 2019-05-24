@@ -97,17 +97,17 @@ shinyServer(function(input, output) {
   output$equation <- renderText({
     req(round_data())
     if (round_data()$model == "exp") {
-      eqn <- str_c("<pre><span id=\"equationToCopy\">=100*exp(", round_data()$a, "*(<strong style=\"color: #00c\">A1</strong>-", round_data()$high_score, "))", sep = "")
+      eqn <- str_c("<pre><span id=\"equationToCopy\" onclick=\"copyToClipboard()\">=100*exp(", round_data()$a, "*(<strong style=\"color: #00c\">A1</strong>-", round_data()$high_score, "))", sep = "")
     } else if (round_data()$intercept < 0) {  # Don't display the "+" sign in the equation
-      eqn <- str_c("<pre><span id=\"equationToCopy\">=if(<strong style=\"color: #00c\">A1</strong>&lt;", round_data()$low_score, ", 0, ", round_data()$slope, "*<strong style=\"color: #00c\">A1</strong>-", abs(round_data()$intercept), ")", sep = "")
+      eqn <- str_c("<pre><span id=\"equationToCopy\" onclick=\"copyToClipboard()\">=if(<strong style=\"color: #00c\">A1</strong>&lt;", round_data()$low_score, ", 0, ", round_data()$slope, "*<strong style=\"color: #00c\">A1</strong>-", abs(round_data()$intercept), ")", sep = "")
     } else {
-      eqn <- str_c("<pre><span id=\"equationToCopy\">=if(<strong style=\"color: #00c\">A1</strong>&lt;", round_data()$low_score, ", 0, ", round_data()$slope, "*<strong style=\"color: #00c\">A1</strong>+", abs(round_data()$intercept), ")", sep = "")
+      eqn <- str_c("<pre><span id=\"equationToCopy\" onclick=\"copyToClipboard()\">=if(<strong style=\"color: #00c\">A1</strong>&lt;", round_data()$low_score, ", 0, ", round_data()$slope, "*<strong style=\"color: #00c\">A1</strong>+", abs(round_data()$intercept), ")", sep = "")
     }
     
     paste("<h4>Performance Points calculation</h4>",
           "<p>Use the equation below in Excel to calculate the performance points for a given score. Replace \"<strong style=\"color: #00c\">A1</strong>\" with the cell that contains the score.</p>",
           eqn,
-          "</span><span onclick=\"copyToClipboard()\"><img src=\"copy.png\" class=\"scale\" /></span></pre>"
+          "</span><button type=\"button\" data-clipboard-target=\"#equationToCopy\" class=\"btn btn-default\">Copy</button></pre>"
           )
   })
   

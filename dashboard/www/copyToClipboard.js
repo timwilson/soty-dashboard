@@ -1,13 +1,8 @@
 function copyToClipboard() {
-  /* Get the text field */
-  var copyText = document.getElementById("equationToCopy");
-
-  /* Select the text field */
-  copyText.select();
-
-  /* Copy the text inside the text field */
+  var range = document.createRange();
+  range.selectNode(document.getElementById("equationToCopy"));
+  window.getSelection().removeAllRanges(); // clear current selection
+  window.getSelection().addRange(range); // to select text
   document.execCommand("copy");
-
-  /* Alert the copied text */
-  alert("Equation copied to clipboard.");
+  window.getSelection().removeAllRanges();// to deselect
 }

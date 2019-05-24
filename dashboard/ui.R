@@ -9,7 +9,8 @@ shinyUI(fluidPage(
     # Link to CSS file
     tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
-        tags$script(src = "copyToClipboard.js")
+        tags$script(src = "clipboard.min.js"),
+        tags$script(src = "newClipboard.js")
     ),
     
     # Application title
